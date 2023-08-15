@@ -1,5 +1,6 @@
 package wanted.backend.board;
 
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -95,6 +96,25 @@ public class BoardController {
                 searchedBoardPage.getTotalPages()
         );
         return ResponseEntity.ok().body(result);
+    }
+
+    @GetMapping("/{boardNo}")
+    public ResponseEntity<?> findBoardById(@AuthenticationPrincipal String userId,
+        @PathVariable Integer boardNo){
+        try{
+            BoardEntity boardEntity = boardService.getBoardById(boardNo);
+            BoardDTO boardDTO = BoardDTO.builder()
+                    .boardNo(boardEntity.getBoardNo())
+                    .title(boardEntity.getTitle())
+                    .createdDatetime(boardEntity.getCreatedDatetime())
+                    .writer(boardEntity.getWriter())
+                    .content(boardEntity.getContent())
+                    .userId(boardEntity.getUserEntity().getId())
+                    .build();
+            return ResponseEntity.ok().body(boardDTO);
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
 
