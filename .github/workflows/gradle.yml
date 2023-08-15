@@ -51,7 +51,7 @@ jobs:
     
     # (5) 압축 파일 형태로 전달
     - name: Make Zip File
-      run: zip -qq -r ./$GITHUB_SHA.zip .
+      run: zip -qq -r ./GITHUB_SHA.zip .
       shell: bash
       
     # (6) AWS 인증
@@ -63,7 +63,7 @@ jobs:
         aws-region: ap-northeast-2
         
     - name: Upload to S3
-      run: aws s3 cp --region ap-northeast-2 ./$GITHUB_SHA.zip s3://$S3_BUCKET_NAME/$GITHUB_SHA.zip
+      run: aws s3 cp --region ap-northeast-2 ./GITHUB_SHA.zip s3://$S3_BUCKET_NAME/GITHUB_SHA.zip
   
     
     # (7) EC2 배포
