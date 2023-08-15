@@ -56,6 +56,11 @@ public class BoardService {
         return board;
     }
 
+    public void delete(Integer no){
+        BoardEntity board = boardRepository.findByBoardNo(no);
+        boardRepository.delete(board);
+    }
+
     public static class BoardNotFoundException extends RuntimeException {
         public BoardNotFoundException(String message) {
             super(message);

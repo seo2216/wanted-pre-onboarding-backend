@@ -1,6 +1,7 @@
 package wanted.backend.board;
 
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -144,6 +145,30 @@ public class BoardController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
 
+    }
+    
+    @DeleteMapping("/{boardNo}")
+    public ResponseEntity<?> delete(@PathVariable Integer boardNo,
+                                    @AuthenticationPrincipal String userId){
+        try{
+            //1. 게시글 존재여부 확인
+            BoardEntity boardEntity = boardService.getBoardById(boardNo);
+            if(boardEntity == null){
+                throw new BoardService.BoardNotFoundException("Board with number " + boardNo + " not found");
+            }
+
+            //2. 작성자 확인
+            boolean isEditable = boardEntity.getUserEntity().getId().equals(Integer.parseInt(userId));
+            if(!isEditable){
+                throw new IllegalArgumentException("You are not authorized to update this board.");
+            }
+
+            boardService.delete(boardNo);
+
+            return ResponseEntity.ok("Board deleted successfully.");
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
 
