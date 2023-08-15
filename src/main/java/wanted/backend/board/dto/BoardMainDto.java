@@ -1,5 +1,4 @@
-package wanted.backend.user;
-
+package wanted.backend.board.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,7 +11,8 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class ResponseDTO<T>{
-    private String error;
+public class BoardMainDto<T> {
     private List<T> data;
+    private int currentPage; // 현재 페이지 번호
+    private int totalPages; // 총 페이지 수
 }
