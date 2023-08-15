@@ -1,4 +1,4 @@
-package wanted.backend.board;
+package wanted.backend.board.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

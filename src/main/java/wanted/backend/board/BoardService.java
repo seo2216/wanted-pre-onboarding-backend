@@ -1,13 +1,12 @@
 package wanted.backend.board;
 
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import wanted.backend.user.UserDTO;
+import wanted.backend.board.dto.BoardDTO;
 import wanted.backend.user.UserEntity;
 
 
@@ -49,5 +48,17 @@ public class BoardService {
                 .createdDatetime(dto.getCreatedDatetime())
                 .build();
     }
+    @Transactional
+    public BoardEntity update(Integer no, BoardDTO boardDTO){
+        BoardEntity board = boardRepository.findByBoardNo(no);
+        board.update(boardDTO.getTitle(), boardDTO.getContent());
 
+        return board;
+    }
+
+    public static class BoardNotFoundException extends RuntimeException {
+        public BoardNotFoundException(String message) {
+            super(message);
+        }
+    }
 }

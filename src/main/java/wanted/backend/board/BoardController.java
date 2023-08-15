@@ -1,24 +1,21 @@
 package wanted.backend.board;
 
-import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
-import wanted.backend.user.UserDTO;
+import wanted.backend.board.dto.BoardDTO;
+import wanted.backend.board.dto.BoardMainDto;
 import wanted.backend.user.UserEntity;
 import wanted.backend.user.UserRepository;
 import wanted.backend.user.UserService;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -115,6 +112,38 @@ public class BoardController {
         }catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
+    }
+
+    @PutMapping("/{boardNo}")
+    public ResponseEntity<?> update(@PathVariable Integer boardNo,
+                                    @AuthenticationPrincipal String userId,
+                                    @RequestBody BoardDTO boardDTO){
+        try{
+            //1. 작성자 확인
+            BoardEntity boardEntity = boardService.getBoardById(boardNo);
+            if(boardEntity == null){
+                throw new BoardService.BoardNotFoundException("Board with number " + boardNo + " not found");
+            }
+
+            boolean isEditable = boardEntity.getUserEntity().getId().equals(Integer.parseInt(userId));
+            if(!isEditable){
+                throw new IllegalArgumentException("You are not authorized to update this board.");
+            }
+            BoardEntity updateBoard = boardService.update(boardNo,boardDTO);
+
+            BoardDTO dto = BoardDTO.builder()
+                    .boardNo(updateBoard.getBoardNo())
+                    .title(updateBoard.getTitle())
+                    .createdDatetime(updateBoard.getCreatedDatetime())
+                    .writer(updateBoard.getWriter())
+                    .content(updateBoard.getContent())
+                    .userId(updateBoard.getUserEntity().getId())
+                    .build();
+            return ResponseEntity.ok().body(dto);
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+
     }
 
 
