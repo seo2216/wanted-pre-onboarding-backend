@@ -10,40 +10,46 @@
 ## 애플리케이션의 실행 방법과 API 명세
 - 과제 1. 사용자 회원가입 엔드포인트
     - `POST /api/auth/user`
- 
-  - request
-      ```{"userEmail" : "1234@asdf.com","password" : "1234568d"}```
+    - request
+
+    {"userEmail" : "1234@asdf.com","password" : "1234568d"}
   
-  - response
-    ```{ "token": null,
+    - response
+    
+    { "token": null,
         "id": 40,
         "userEmail": "12345@asdf.com",
-        "password": null }```
+        "password": null }
+    
 - 과제 2. 사용자 로그인 엔드포인트
     - `POST /api/auth/login`
-      
     - request
-      ```{"userEmail" : "1234@asdf.com","password" : "1234568d"}```
+      
+    {"userEmail" : "1234@asdf.com","password" : "1234568d"}
 
     -response
-    ```{
-    "token":   "OTIxMTgyMjAsImV4cCI6MTY5MjEyMTgyMH0.sIj9pLVAtZdcY_buuSzy4pizDU1-OGCZfvhS_irVXU-S0voFJQJQABAnSbaFaW..asd",
+
+    {
+    "token":   "OTIxMTgyMjAsImV4cCI6MTY5MjZdcY_buuSzy4pizDU1-OGCZfvhS_irVXU-S0voFJQJQABAnSbaFaW..asd",
     "id": 39,
     "userEmail": "123@asdf.com",
     "password": null
-    }```
+    }
   
 - 과제 3. 새로운 게시글을 생성하는 엔드포인트
     - `POST /api/boards`
     - requset
-      ``` {"title" : "제목","content" : "내용"}```
+      
+    {"title" : "제목","content" : "내용"}
+  
     - response
-      ```{"boardNo": 41,
+      
+    {"boardNo": 41,
     "userId": 39,
     "writer": "123@asdf.com",
     "title": "제목",
     "content": "내용",
-    "createdDatetime": "2023-08-15T16:54:55.983+00:00" }```
+    "createdDatetime": "2023-08-15T16:54:55.983+00:00" }
   
 - 과제 4. 게시글 목록을 조회하는 엔드포인트
     - `GET /api/boards?page={5}&size={5}`
