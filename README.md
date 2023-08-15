@@ -129,5 +129,6 @@
     
     [response] Board deleted successfully.
     ```
+    
 ## 데이터베이스 테이블 구조
 <img width="575" alt="db 테이블 구조" src="https://github.com/seo2216/wanted-pre-onboarding-backend/assets/111838497/97104bdd-941b-44cb-8f86-6416f1371dbd">
