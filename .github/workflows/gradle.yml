@@ -36,7 +36,7 @@ jobs:
     # application-dev.properties 수정
     - name: Modify application-dev.properties
       run: |
-        sed -i "s|spring.datasource.password=|spring.datasource.password=${{ secrets.AWS_password }}|"./src/main/resources/application-dev.properties
+        sed -i "s|spring.datasource.password=|spring.datasource.password=${{ secrets.AWS_PASSWORD }}|"./src/main/resources/application-dev.properties
         
     # (4) Gradle Build (test 제외)
     - name: Grant execute permission for gradlew
