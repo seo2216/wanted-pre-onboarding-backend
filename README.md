@@ -1,11 +1,11 @@
 # wanted-pre-onboarding-backend - 지원자 김윤설
 ## 과제 제출 필수 사항
-- [ ]지원자의 성명
-- [ ]애플리케이션의 실행 방법 (엔드포인트 호출 방법 포함)
-- [ ]데이터베이스 테이블 구조
-- [ ]구현한 API의 동작을 촬영한 데모 영상 링크
-- [ ]구현 방법 및 이유에 대한 간략한 설명
-- [ ]API 명세(request/response 포함)
+- [ ] 지원자의 성명
+- [ ] 애플리케이션의 실행 방법 (엔드포인트 호출 방법 포함)
+- [ ] 데이터베이스 테이블 구조
+- [ ] 구현한 API의 동작을 촬영한 데모 영상 링크
+- [ ] 구현 방법 및 이유에 대한 간략한 설명
+- [ ] API 명세(request/response 포함)
 - 
 ## 애플리케이션의 실행 방법과 API 명세
 - 과제 1. 사용자 회원가입 엔드포인트
@@ -13,17 +13,31 @@
  
   - request
       ```{"userEmail" : "1234@asdf.com","password" : "1234568d"}```
-
-    -response
-    ```{
+  
+  -response
+    ```
+    {
         "token": null,
         "id": 40,
         "userEmail": "12345@asdf.com",
         "password": null
-    }```
+    }
+    ```
 - 과제 2. 사용자 로그인 엔드포인트
     - `POST /api/auth/login`
-    - ` {"userEmail" : "1234@asdf.com","password" : "1234568d"}`
+      
+  - request
+      ```{"userEmail" : "1234@asdf.com","password" : "1234568d"}```
+
+  -response
+    ```
+{
+    "token":   "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzOSIsImlzcyI6IndhbnRlZEludGVybnNoaXAiLCJpYXQiOjE2OTIxMTgyMjAsImV4cCI6MTY5MjEyMTgyMH0.sIj9pLVAtZdcY_buuSzy4pizDU1-OGCZfvhS_irVXU-S0voFJQJQABAnSbaFaW-IZ6xgwT5FwFf1O5lFyoJpAQ",
+    "id": 39,
+    "userEmail": "123@asdf.com",
+    "password": null
+}
+    ```
   
 - 과제 3. 새로운 게시글을 생성하는 엔드포인트
     - `POST /api/boards`
