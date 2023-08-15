@@ -11,6 +11,13 @@ on:
   push:
     branches: [ "main" ]
 
+env:
+  AWS_REGION: ap-northeast-2
+  PROJECT_NAME: wanted-internship
+  BUCKET_NAME: wanted-with-githubaction
+  # CODE_DEPLOY_APP_NAME: fairyteller_dev
+  # DEPLOYMENT_GROUP_NAME: fairyteller-dev-be
+
 permissions:
   contents: read
 
@@ -51,7 +58,7 @@ jobs:
     
     # (5) 압축 파일 형태로 전달
     - name: Make Zip File
-      run: zip -qq -r ./GITHUB_SHA.zip .
+      run: zip -qq -r ./$GITHUB_SHA.zip .
       shell: bash
       
     # (6) AWS 인증
@@ -62,8 +69,9 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ap-northeast-2
         
+    # S3 bucket으로 
     - name: Upload to S3
-      run: aws s3 cp --region ap-northeast-2 ./GITHUB_SHA.zip s3://$S3_BUCKET_NAME/GITHUB_SHA.zip
+      run: aws s3 cp --region ap-northeast-2 ./$GITHUB_SHA.zip s3://$BUCKET_NAME/$PROJECT_NAME/$GITHUB_SHA.zip
   
     
     # (7) EC2 배포
