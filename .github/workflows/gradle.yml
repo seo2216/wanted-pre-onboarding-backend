@@ -32,7 +32,7 @@ jobs:
     # (3) application.properties 수정
     - name: Modify application.properties
       run: |
-        sed -i "s|spring.profiles.active=local|spring.profiles.active=dev|" ./src/main/resources/application.properties
+        sed -i "s|spring.profiles.active=local|spring.profiles.active=dev|"  ./src/main/resources/application.properties
         sed -i "s|#spring.datasource.password=|spring.datasource.password=${{ secrets.AWS_password }}|"./src/main/resources/application-dev.properties
         
     # (4) Gradle Build (test 제외)
