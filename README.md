@@ -2,10 +2,24 @@
 ## 과제 제출 필수 사항
 - [X] 지원자의 성명
 - [X] 애플리케이션의 실행 방법 (엔드포인트 호출 방법 포함)
-- [ ] 데이터베이스 테이블 구조
+- [X] 데이터베이스 테이블 구조
 - [ ] 구현한 API의 동작을 촬영한 데모 영상 링크
 - [ ] 구현 방법 및 이유에 대한 간략한 설명
 - [X] API 명세(request/response 포함)
+
+## 구현 방법 및 이유에 대한 간략한 설명
+- SpringBoot + JPA 를 사용해서 구현함
+  - sql에 중심이 아닌 객체지향적으로 서비스 구현
+- Controller, Service, Repository 나눠서 구현하여 역할별로 분리하고, 중복코드를 제거하고, 확장성과 재사용성 높임
+- Entity와 DTO를 분리하여 Entity의 setter를 없애고, 로직에 필요한 데이터만 선별해서 DTO를 생성함
+- DTO와 Builder Pattern를 사용하여 필요한 데이터만 설정하여 유연성 높임
+
+    ex) `BoardUpdateRequestDto`, `boardDTO`
+- 게시글 수정 시 `더티 체킹(Dirty Checking)` 활용함
+    1. 영속성 컨텍스트 = 엔티티를 영구 저장하는 환경
+    2. JPA의 EntityManager가 활성화된 상태로 트랜잭션 내에서 데이터베이스의 데이터를 가져옴 (영속성 컨텍스트 유지 상태)
+    3. 영속성 컨텍스트 유지 상태 해당 데이터의 값을 변경할 경우, 트랜잭션이 종료되는 시점에 해당 테이블에 변경분을 반영
+       -  Entity 객체의 값만 변경하면 별도로 Update 쿼리를 날릴 필요 X
   
 ## 애플리케이션의 실행 방법과 API 명세
 - 과제 1. 사용자 회원가입 엔드포인트 `POST /api/auth/user`
@@ -115,3 +129,5 @@
     
     [response] Board deleted successfully.
     ```
+## 데이터베이스 테이블 구조
+<img width="575" alt="db 테이블 구조" src="https://github.com/seo2216/wanted-pre-onboarding-backend/assets/111838497/97104bdd-941b-44cb-8f86-6416f1371dbd">
