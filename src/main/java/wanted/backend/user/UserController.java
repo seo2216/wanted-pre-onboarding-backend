@@ -10,6 +10,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import wanted.backend.security.TokenProvider;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -20,11 +21,13 @@ public class UserController {
     @Autowired
     private UserService userService;
     private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    @Autowired
+    private TokenProvider tokenProvider;
 
-    @PostMapping("api/auth/user")
+    @PostMapping("/api/auth/user")
     public ResponseEntity<?> registerUser(@Valid @RequestBody UserDTO userDto, BindingResult bindingResult) {
         // 유효성 검사
-        if(bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             List<FieldError> fieldErrors = bindingResult.getFieldErrors();
             StringBuilder errorMessage = new StringBuilder();
 
@@ -33,7 +36,7 @@ public class UserController {
             }
             return ResponseEntity.badRequest().body(errorMessage.toString());
         }
-        
+
         try {
             if (userDto != null && userDto.getPassword() != null) {
                 UserEntity user = UserEntity.builder().userEmail(userDto.getUserEmail()).password(this.passwordEncoder.encode(userDto.getPassword())).build();
@@ -48,4 +51,36 @@ public class UserController {
             return ResponseEntity.badRequest().body(responseDTO);
         }
     }
+
+    @PostMapping("/api/auth/login")
+    public ResponseEntity<?> authenticate(@Valid @RequestBody UserDTO userDto, BindingResult bindingResult) {
+        // 유효성 검사
+        if (bindingResult.hasErrors()) {
+            List<FieldError> fieldErrors = bindingResult.getFieldErrors();
+            StringBuilder errorMessage = new StringBuilder();
+
+            for (FieldError error : fieldErrors) {
+                errorMessage.append(error.getDefaultMessage()).append("\n");
+            }
+            return ResponseEntity.badRequest().body(errorMessage.toString());
+        }
+        UserEntity user = userService.getByCheckedUser(userDto.getUserEmail(), userDto.getPassword()
+                , passwordEncoder);
+
+        if (user != null) {
+            String token = tokenProvider.createToken(user);
+
+            UserDTO response = UserDTO.builder()
+                    .id(user.getId())
+                    .userEmail(user.getUserEmail())
+                    .token(token)
+                    .build();
+            return ResponseEntity.ok().body(response);
+        }else{
+            ResponseDTO responseDTO = ResponseDTO.builder().error("Login Failed").build();
+            return ResponseEntity.badRequest().body(responseDTO);
+        }
+    }
+
 }
+
