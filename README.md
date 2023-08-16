@@ -12,6 +12,9 @@
 - [ ] docker compose를 이용하여 애플리케이션 환경을 구성한 경우 (README.md 파일에 docker-compose 실행 방법 반드시 기입)
 - [ ] 클라우드 환경(AWS, GCP)에 배포 환경을 설계하고 애플리케이션을 배포한 경우 (README.md 파일에 배포된 API 주소와 설계한 AWS 환경 그림으로 첨부)
 
+## AWS 배포
+- IP : http://13.124.152.24
+
 ## 구현 방법 및 이유에 대한 간략한 설명
 - SpringBoot + JPA 를 사용해서 구현함
   - sql에 중심이 아닌 객체지향적으로 서비스 구현
@@ -27,7 +30,9 @@
        -  Entity 객체의 값만 변경하면 별도로 Update 쿼리를 날릴 필요 X
   
 ## 애플리케이션의 실행 방법과 API 명세
-- 과제 1. 사용자 회원가입 엔드포인트 `POST /api/auth/user`
+- 과제 1. 사용자 회원가입 엔드포인트
+  
+  `POST /api/auth/user`
     ```
     [request]
     { "userEmail" : "1234@asdf.com"
@@ -39,7 +44,9 @@
        "userEmail": "12345@asdf.com",
        "password": null }
     ```
-- 과제 2. 사용자 로그인 엔드포인트 `POST /api/auth/login`
+- 과제 2. 사용자 로그인 엔드포인트
+
+   `POST /api/auth/login`
     ```
     [request]
     {"userEmail" : "1234@asdf.com"
@@ -52,7 +59,9 @@
     "password": null}
     ```
   
-- 과제 3. 새로운 게시글을 생성하는 엔드포인트 `POST /api/boards`
+- 과제 3. 새로운 게시글을 생성하는 엔드포인트
+
+  `POST /api/boards`
     ```
     [request]
     {"title" : "제목","content" : "내용"}
@@ -67,7 +76,9 @@
     ```
 
   
-- 과제 4. 게시글 목록을 조회하는 엔드포인트 `GET /api/boards?page={5}&size={5}`, `/api/boards => defalut page = 0, size= 8` 
+- 과제 4. 게시글 목록을 조회하는 엔드포인트
+
+  `GET /api/boards?page={5}&size={5}`, `/api/boards => defalut page = 0, size= 8` 
     ```
     [request]
     
@@ -97,7 +108,9 @@
     }
     ```
 
-- 과제 5. 특정 게시글을 조회하는 엔드포인트 `GET /api/boards/{board_no}`
+- 과제 5. 특정 게시글을 조회하는 엔드포인트
+
+  `GET /api/boards/{board_no}`
     ```
     [request]
     
@@ -112,7 +125,9 @@
     }
     ```
 
-- 과제 6. 특정 게시글을 수정하는 엔드포인트 `PUT /api/boards/{board_no}`
+- 과제 6. 특정 게시글을 수정하는 엔드포인트
+
+  `PUT /api/boards/{board_no}`
    ```
     [request]
     {"title" : "변경",
@@ -128,7 +143,9 @@
         "createdDatetime": "2023-08-15T16:54:55.983+00:00"
     }
   ```
-- 과제 7. 특정 게시글을 삭제하는 엔드포인트 `DELETE /api/boards/{board_no}`
+- 과제 7. 특정 게시글을 삭제하는 엔드포인트
+
+  `DELETE /api/boards/{board_no}`
     ```
     [request]
     
