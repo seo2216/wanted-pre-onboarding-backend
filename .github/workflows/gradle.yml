@@ -46,7 +46,7 @@ jobs:
     - name: Modify application.properties
       run: |
         sed -i "s|spring.profiles.active=local|spring.profiles.active=dev|" ./src/main/resources/application.properties
-      
+        sed -i "s|jwt.secret.key=|jwt.secret.key=${{ secrets.JWT_SECRET_KEY }}|" ./src/main/resources/application.properties
     # (4) Gradle Build (test 제외)
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
