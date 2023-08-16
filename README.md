@@ -10,10 +10,12 @@
 ## 추가 사항 
 - [ ] 통합 테스트 또는 단위 테스트 코드를 추가한 경우
 - [ ] docker compose를 이용하여 애플리케이션 환경을 구성한 경우 (README.md 파일에 docker-compose 실행 방법 반드시 기입)
-- [ ] 클라우드 환경(AWS, GCP)에 배포 환경을 설계하고 애플리케이션을 배포한 경우 (README.md 파일에 배포된 API 주소와 설계한 AWS 환경 그림으로 첨부)
+- [X] 클라우드 환경(AWS, GCP)에 배포 환경을 설계하고 애플리케이션을 배포한 경우 (README.md 파일에 배포된 API 주소와 설계한 AWS 환경 그림으로 첨부)
 
 ## AWS 배포
 - IP : http://13.124.152.24
+
+<img width="726" alt="aws구조" src="https://github.com/seo2216/wanted-pre-onboarding-backend/assets/111838497/2cc71802-332a-43d9-a04f-8c5ce57e7382">
 
 ## 구현 방법 및 이유에 대한 간략한 설명
 - SpringBoot + JPA 를 사용해서 구현함
