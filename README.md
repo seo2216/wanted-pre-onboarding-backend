@@ -15,7 +15,7 @@
 ## AWS 배포
 - IP : http://13.124.152.24
 
-<img width="726" alt="aws구조" src="https://github.com/seo2216/wanted-pre-onboarding-backend/assets/111838497/2cc71802-332a-43d9-a04f-8c5ce57e7382">
+<img width="726" alt="aws구조" src="https://github.com/seo2216/wanted-pre-onboarding-backend/assets/111838497/f3d04495-3706-45b3-914d-a560102fc22b">
 
 ## 구현 방법 및 이유에 대한 간략한 설명
 - SpringBoot + JPA 를 사용해서 구현함
@@ -158,4 +158,4 @@
 https://drive.google.com/drive/folders/1Smk4UTxItW1XN_1mFlGimLXex4HE-Npb?usp=sharing
 
 ## 데이터베이스 테이블 구조
-<img width="575" alt="db 테이블 구조" src="https://github.com/seo2216/wanted-pre-onboarding-backend/assets/111838497/97104bdd-941b-44cb-8f86-6416f1371dbd">
+<img width="575" alt="db 테이블 구조" src="https://github.com/seo2216/wanted-pre-onboarding-backend/assets/111838497/0107faaf-3e9c-476a-bf33-00962c1b08a3">
