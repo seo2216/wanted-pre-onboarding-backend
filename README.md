@@ -3,7 +3,7 @@
 - [X] 지원자의 성명
 - [X] 애플리케이션의 실행 방법 (엔드포인트 호출 방법 포함)
 - [X] 데이터베이스 테이블 구조
-- [ ] 구현한 API의 동작을 촬영한 데모 영상 링크
+- [X] 구현한 API의 동작을 촬영한 데모 영상 링크
 - [X] 구현 방법 및 이유에 대한 간략한 설명
 - [X] API 명세(request/response 포함)
 
@@ -28,7 +28,7 @@
     2. JPA의 EntityManager가 활성화된 상태로 트랜잭션 내에서 데이터베이스의 데이터를 가져옴 (영속성 컨텍스트 유지 상태)
     3. 영속성 컨텍스트 유지 상태 해당 데이터의 값을 변경할 경우, 트랜잭션이 종료되는 시점에 해당 테이블에 변경분을 반영
        -  Entity 객체의 값만 변경하면 별도로 Update 쿼리를 날릴 필요 X
-  
+
 ## 애플리케이션의 실행 방법과 API 명세
 - 과제 1. 사용자 회원가입 엔드포인트
   
@@ -151,6 +151,9 @@
     
     [response] Board deleted successfully.
     ```
-    
+
+## 데모 영상 링크
+https://drive.google.com/drive/folders/1Smk4UTxItW1XN_1mFlGimLXex4HE-Npb?usp=sharing
+
 ## 데이터베이스 테이블 구조
 <img width="575" alt="db 테이블 구조" src="https://github.com/seo2216/wanted-pre-onboarding-backend/assets/111838497/97104bdd-941b-44cb-8f86-6416f1371dbd">
