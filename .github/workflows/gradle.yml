@@ -15,8 +15,8 @@ env:
   AWS_REGION: ap-northeast-2
   PROJECT_NAME: wanted-internship
   BUCKET_NAME: wanted-with-githubaction
-  # CODE_DEPLOY_APP_NAME: wanted-internship
-  # DEPLOYMENT_GROUP_NAME: wanted-internship-be
+  CODE_DEPLOY_APP_NAME: wanted-internship
+  DEPLOYMENT_GROUP_NAME: wanted-internship-be
 
 permissions:
   contents: read

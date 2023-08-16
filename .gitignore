@@ -40,3 +40,4 @@ out/
 
 ### api key 등 민감정보 ###
 application-local.properties
+application-dev.properties
