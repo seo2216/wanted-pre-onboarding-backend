@@ -13,7 +13,6 @@
 - [X] 클라우드 환경(AWS, GCP)에 배포 환경을 설계하고 애플리케이션을 배포한 경우 (README.md 파일에 배포된 API 주소와 설계한 AWS 환경 그림으로 첨부)
 
 ## AWS 배포
-- IP : http://13.124.152.24
 
 <img width="726" alt="aws구조" src="https://github.com/seo2216/wanted-pre-onboarding-backend/assets/111838497/f3d04495-3706-45b3-914d-a560102fc22b">
 
